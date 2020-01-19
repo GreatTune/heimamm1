@@ -56,9 +56,9 @@
         </el-checkbox>
         <el-form-item>
           <el-button class="from-bottom" type="primary" @click="onSubmit"
-            >立即创建</el-button
+            >登录</el-button
           >
-          <el-button class="from-bottom" type="primary">取消</el-button>
+          <el-button class="from-bottom" type="primary">注册</el-button>
         </el-form-item>
       </el-form>
     </div>
