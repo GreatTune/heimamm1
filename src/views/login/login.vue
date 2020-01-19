@@ -17,17 +17,17 @@
         label-width="43px"
       >
         <!-- 手机号输入框 -->
-        <el-form-item>
+        <el-form-item prop="phone">
           <el-input
-            v-model="form.name"
+            v-model="ruleForm.phone"
             placeholder="请输入手机号"
             prefix-icon="el-icon-user"
           ></el-input>
         </el-form-item>
         <!-- 密码输入框 -->
-        <el-form-item>
+        <el-form-item prop="password">
           <el-input
-            v-model="form.name"
+            v-model="ruleForm.password"
             placeholder="请输入密码"
             prefix-icon="el-icon-lock"
           ></el-input>
@@ -35,9 +35,9 @@
         <el-row>
           <el-col :span="18">
             <!-- 验证码输入框 -->
-            <el-form-item>
+            <el-form-item prop="code">
               <el-input
-                v-model="form.name"
+                v-model="ruleForm.code"
                 placeholder="请输入验证码"
                 prefix-icon="el-icon-key"
               ></el-input>
@@ -69,12 +69,47 @@
 </template>
 
 <script>
+// 手机号验证格式
+var validatePhone = (rule, value, callback) => {
+  // 如果输入框内容为空
+  if (value === '') {
+    // 则提示用户输入手机号
+    callback(new Error('手机号码不能为空'))
+  } else {
+    // 判断手机号码格式是否正确
+    const reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+    if (reg.test(value) == true) {
+      callback();
+    }else {
+      // 如果不正确 , 则提示用户格式不对
+      callback(new Error('手机号码格式不正确 , 请重新输入!'))
+    }
+    callback()
+  }
+}
 export default {
   data () {
     return {
       name: 'login',
-      form: {
-        name: ''
+      // 变量属性
+      ruleForm: {
+        phone: '', // 手机号
+        password: '', // 登录密码
+        code: '' // 验证码
+      },
+      // 输入框自定义校验规则
+      rules: {
+        phone: [
+          { validator: validatePhone, trigger: 'blur' },
+        ],
+        password: [
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          { min: 6, max: 18, message: '长度为6~16为数', teigger: 'change' }
+        ],
+        code: [
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          { min: 4, max: 4, message: '长度为4为数', teigger: 'change' }
+        ]
       }
     }
   },
