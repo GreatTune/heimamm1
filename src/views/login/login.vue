@@ -9,11 +9,62 @@
         <div class="left-link"></div>
         <div class="left-user">用户登录</div>
       </div>
+      <el-form
+        class="login-form"
+        ref="ruleForm"
+        :model="ruleForm"
+        :rules="rules"
+        label-width="43px"
+      >
+        <!-- 手机号输入框 -->
+        <el-form-item>
+          <el-input
+            v-model="form.name"
+            placeholder="请输入手机号"
+            prefix-icon="el-icon-user"
+          ></el-input>
+        </el-form-item>
+        <!-- 密码输入框 -->
+        <el-form-item>
+          <el-input
+            v-model="form.name"
+            placeholder="请输入密码"
+            prefix-icon="el-icon-lock"
+          ></el-input>
+        </el-form-item>
+        <el-row>
+          <el-col :span="18">
+            <!-- 验证码输入框 -->
+            <el-form-item>
+              <el-input
+                v-model="form.name"
+                placeholder="请输入验证码"
+                prefix-icon="el-icon-key"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <img class="code-img" src="../../assets/01.png" alt="" />
+          </el-col>
+        </el-row>
+        <!-- 勾选框 -->
+        <el-checkbox v-model="checked" class="form-checked">
+          我已阅读并同意
+          <el-link type="primary">用户协议</el-link>
+          和
+          <el-link type="primary">隐私条款</el-link>
+        </el-checkbox>
+        <el-form-item>
+          <el-button class="from-bottom" type="primary" @click="onSubmit"
+            >立即创建</el-button
+          >
+          <el-button class="from-bottom" type="primary">取消</el-button>
+        </el-form-item>
+      </el-form>
     </div>
     <div class="login-right">
       <img src="../../assets/login_banner_ele.png" alt="" />
     </div>
-    
   </div>
 </template>
 
@@ -23,8 +74,13 @@ export default {
     return {
       name: 'login',
       form: {
-        name: '',
+        name: ''
       }
+    }
+  },
+  methods: {
+    onSubmit () {
+      window.console.log('submit!')
     }
   }
 }
@@ -74,6 +130,28 @@ export default {
         font-size: 22px;
         color: rgba(12, 12, 12, 1);
       }
+    }
+    // 表单css样式
+    .login-form {
+      margin-top: 27px;
+      padding-right: 41px;
+      // 验证码
+      .el-col {
+        .code-img {
+          width: 100%;
+        }
+      }
+    }
+    // 勾选框
+    .form-checked {
+      margin-left: 43px;
+      margin-bottom: 28px;
+    }
+    // 点击按钮
+    .from-bottom {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 26px;
     }
   }
 }
