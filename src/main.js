@@ -2,7 +2,7 @@
 import Vue from 'vue'
 // app 引入
 import App from './App.vue'
-// router 引入
+// router 路由引入
 import router from './router/index.js'
 // 全局css样式 引入
 import './style/base.css'

@@ -1,6 +1,6 @@
 // 导入vue
 import Vue from 'vue'
-// 导入router
+// 导入router路由
 import VueRouter from 'vue-router'
 // router注册
 Vue.use(VueRouter)
@@ -12,18 +12,16 @@ import login from '../views/login/login.vue'
 import index from '../views/index/index.vue'
 
 // 使用router
-const router = new VueRouter({
-  router : [
+const router = new VueRouter({ // 实例化
+  routes: [
     {
-      // 组件地址
-      path: '/login',
-      // 组件名
+      path: "/login", 
       component: login
     },
     {
-      path: '/index',
-      component: index
-    },
+      path: "/index",
+      component: index,
+    }
   ]
 })
 
